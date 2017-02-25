@@ -1,0 +1,166 @@
+body{
+	text-align: center;
+}
+.agileheader{
+	margin: 50px, 20px, 10px, 20px;
+}
+
+.agileheader h1, .agileheader h2{
+	color: grey;
+    text-align: center;
+}
+.main{
+	width: 100%;
+}
+.main img{
+	height: 50%;
+	width: 30%;
+	margin: 2px;
+	vertical-align: middle;
+}
+.main h2
+{
+	color: #333333;
+}
+.rezerwacje{
+	float:left;
+	border-style:solid;
+	border-color:#000;
+	width: 30%;
+	height: 200px;
+	margin: 1%;
+	padding: 0.3%;
+}
+.wydarzenia{
+	float:left;
+	border-style:solid;
+	border-color:#000;
+	width: 30%;
+	height: 200px;
+	margin: 1%;
+	padding: 0.3%;
+
+}
+.planZoo{
+	float:left;
+	border-style:solid;
+	border-color:#000;
+	width: 30%;
+	height: 200px;
+	margin: 1%;
+	padding: 0.3%;
+
+}
+.rezerwacje:hover, .wydarzenia:hover, .planZoo:hover{
+	background-color: #ebebe0;
+	border-color: #8c8c8c;
+	color: #8c8c8c;
+	cursor:pointer;
+}
+.smallMain{
+	width: 100%;
+}
+.smallMain img{
+	height: 30%;
+	width: 20%;
+	margin: 2px;
+	vertical-align: middle;
+}
+.smallMain h3, .smallMain h4{
+	color: #333333;
+}
+.contactForm{
+	float:left;
+	border-style:solid;
+	border-color:#000;
+	width: 20%;
+	height: 150px;
+	margin: 1%;
+}
+.newsletter{
+	float:left;
+	border-style:solid;
+	border-color:#000;
+	width: 20%;
+	height: 150px;
+	margin: 1%;
+}
+.contactForm:hover, .newsletter:hover{
+	background-color: #ebebe0;
+	border-color: #8c8c8c;
+	color: #8c8c8c;
+	cursor:pointer;
+}
+input[type=submit]{
+	width: 120px;
+	height: 40px;
+	background-color: #555;
+	border: none;
+    color: white;
+    cursor: pointer;
+}
+input[type=text], input[type=password]{
+	border: none;
+	height: 40px;
+	width: 240px;
+    border-bottom: 2px solid #555;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    border: 3px solid #666;
+}
+   cursor: pointer;
+}
+.logOut h3{
+	color: grey;
+    text-align: center;
+}
+.clear{
+	clear:both;
+}
+
+/* Calendar Styles */
+.calendar{
+	border-collapse: collapse;
+	margin-top: 20px;
+	width: 100%;
+}
+.calendar caption{
+	margin-bottom: 10px;
+	size: 50px;
+	color: #333333;
+}
+.calendar .header{
+	background: #555;
+	color: #fff;
+
+}
+.calendar tr:nth-child(odd){
+	background: #e0e0e0;
+}
+.calendar tr:nth-child(even){
+	background: #f0f0f0;
+}
+.calendar th, .calendar td{
+	vertical-align:top;
+	padding: 2.5px;
+	border: 1px solid #eee;
+	text-align: left;
+	width:200px;
+}
+.calendar td{
+	height:100px;
+}
+select{
+	width: 120px;
+	height: 40px;
+	background-color: #555;
+	border: none;
+    color: white;
+    text-overflow: ellipsis;
+    -webkit-appearance: none;
+    cursor:pointer;
+}
+select:hover{
+	background-color: #777;
+}

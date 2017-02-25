@@ -14,6 +14,11 @@ if(isset($_POST['imie']))
 		$poprawnyFormularz = 0;
 		$_SESSION['imieErr'] = "Błędne Imię. Imię może składać się tylko ze znaków alfanumerycznych.";
 	}
+	elseif($imie == "admin" || $imie =="Admin")
+	{
+		$poprawnyFormularz = 0;
+		$_SESSION['imieErr'] = "Błędne Imię. Wybrane imię jest zarezerwowane.";
+	}
 	else
 	{
 		$poprawnyFormularz = 1;
@@ -101,6 +106,7 @@ if(isset($_POST['imie']))
 	try
 	{
 		$polaczenie = new mysqli($host, $db_user, $db_pas, $db_name);
+
 		if($polaczenie->connect_errno != 0)
 		{
 			throw new Exception(mysqli_connect_errno());
@@ -108,8 +114,8 @@ if(isset($_POST['imie']))
 		else
 		{
 			//czy email się nie powtarza
-			$sprawdzEmail = $polaczenie->query("SELECT id FROM users WHERE email='$email'");
-			$sprawdzTel =  $polaczenie->query("SELECT id FROM users WHERE tel='$tel'");
+			$sprawdzEmail = $polaczenie->query(sprintf("SELECT id FROM users WHERE email='$email'",mysqli_real_escape_string($polaczenie,$email)));
+			$sprawdzTel =  $polaczenie->query(sprintf("SELECT id FROM users WHERE tel='$tel'",mysqli_real_escape_string($polaczenie,$tel)));
 			if(!$sprawdzEmail)
 			{
 				throw new Exception($sprawdzEmail->error);
@@ -132,10 +138,15 @@ if(isset($_POST['imie']))
 					$poprawnyFormularz = 0;
 					$_SESSION['telErr'] = "Podany telefon istnieje w bazie";
 				}
+
+				$imieEsc = mysqli_real_escape_string($polaczenie,$imie);
+				$nickEsc = mysqli_real_escape_string($polaczenie,$nick);
+				$emailEsc = mysqli_real_escape_string($polaczenie,$email);
+				$telEsc = mysqli_real_escape_string($polaczenie,$tel);
 				
 				if($poprawnyFormularz === 1)
 				{
-					if($polaczenie->query("INSERT INTO users VALUES(NULL, '$imie', '$nick', '$email', '$tel', '$haslo_hash')"))
+					if($polaczenie->query("INSERT INTO users VALUES(NULL, '$imieEsc', '$nickEsc', '$emailEsc', '$telEsc', '$haslo_hash')"))
 					{
 						$poprawnyFormularz = 1;
 						header("Location: index.php");
@@ -146,6 +157,7 @@ if(isset($_POST['imie']))
 					}
 				}
 			}
+			$polaczenie->close();
 		}
 	}
 	catch(Exception $exc)

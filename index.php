@@ -26,6 +26,7 @@ if(isset($_POST['mailLog']))
 				if(password_verify($pass, $row['pas']))
 				{
 					$_SESSION['LogAs'] = $row['name'];
+					$_SESSION['LogMail'] = $row['email'];
 					$LoginQuery->free_result();
 					header('Location: main.php');
 				}
@@ -38,6 +39,7 @@ if(isset($_POST['mailLog']))
 			{
 				$_SESSION['LogErr'] = "Niepoprawny login lub hasło!";
 			}
+			$connection->close();
 		}
 	}
 	catch(Exception $ex)
