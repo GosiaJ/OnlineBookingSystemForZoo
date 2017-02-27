@@ -6,7 +6,7 @@ session_start();
 
 try
 	{
-		if(!require("calendar.php"))
+		if(!require("calendar_Classes.php"))
 			throw new Exception("Błąd odczytu pliku");
 	}
 	catch(Exception $e)
@@ -38,15 +38,36 @@ try
  <!-- KALENDARZ Z WYDARZENIAMI! admin ma możliwość dodawania nowych wydarzeń.-->
 	<?php
 
+		if($_SESSION['LogAs'] == 'Admin')
+		{
+			$but = '<form action="#" method="post">';
+			$but .= '<input type="submit" name="submit" value="Dodaj wydarzenie"><br/><br/>';
+			$but .= '</form>';
+
+			if(!isset($_POST['submit']))
+			{
+				echo $but;
+			}
+			else
+			{
+				$dodajWydarzenie = new Form;
+				$dodajWydarzenie->showForm();
+			}
+		}
+		
+
 		$form = new ChooseMonth();
 		$newMon = $form->form();
 		$newYear = $form->takeYear();
 
 		$calendar = new Calendar($newMon,$newYear);
 		$calendar->show();
+
 	?>
 
 </div>
+
+
 
 <div class="logOut">
 
