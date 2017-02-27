@@ -270,7 +270,7 @@ input[type=submit], input[type=button]{
 	<?php
 		if(isset($_SESSION['telErr']))
 		{
-			echo '<span style="color:red;">* '. $_SESSION['telimieErr'] .'</span><br/><br/>';
+			echo '<span style="color:red;">* '. $_SESSION['telErr'] .'</span><br/><br/>';
 			unset($_SESSION['telErr']); 
 		}
 	?>
