@@ -155,6 +155,7 @@ class Calendar{
 
 				//początek liczenia dni
 				$current_day = 1;
+				$zmienna = 0;
 				//pętla, w której tworzymy dni
 				while($current_day <= $this->num_days)
 				{
@@ -163,14 +164,15 @@ class Calendar{
 						$this->day_of_week = 0;
 						$output .= '</tr><tr>';
 					}
+					$output .= '<td class="day">' . $current_day;
 					//$zmienna w stanie niskim informuje nas o tym, że nie znaleziono żadnego dopasowania do daty z DB
 					for($a=0; $a<count($dayArray);$a++)
 					{
 						if($dayArray[$a] == $current_day && $monthArray[$a] == $this->month)
 						{
-							$output .= '<td class="day">' . $current_day . ' <p>' . $nameArray[$a] . '</p></td>';
 							$zmienna = 1;
-							break;
+							$output .= '<p>' . $nameArray[$a] . '</p>';
+
 						}
 						elseif($dayArray[$a] != $current_day)
 						{
@@ -179,8 +181,8 @@ class Calendar{
 					}
 					if($zmienna == 0)
 					{
-						$output .= '<td class="day">' . $current_day . '</td>';
-						$amienna = 1;
+						$output .= '</td>';
+						$amienna = 0;
 					}
 
 					//zwiększanie licznika
@@ -255,6 +257,7 @@ class EditEvents{
 
 
 			}
+			$connection->close();
 		}
 		catch(Exception $e)
 		{
